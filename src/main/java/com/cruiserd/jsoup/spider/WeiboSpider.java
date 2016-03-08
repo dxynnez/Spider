@@ -53,10 +53,10 @@ public class WeiboSpider implements Spider {
                 .build();
         
         String json = Jsoup.connect("https://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.15)")
-        	               .data(map)
-        	               .method(Method.POST)
-        	               .execute()
-        	               .body();
+                           .data(map)
+                           .method(Method.POST)
+                           .execute()
+                           .body();
         
         Gson gson = new Gson();
         String url = gson.fromJson(json, SinaLoginJSONModel.class).getCrossDomainUrlList().get(0);
@@ -70,10 +70,10 @@ public class WeiboSpider implements Spider {
                           ticket + "&ssosavestate=" + ssosavestate +
                           "&callback=sinaSSOController.doCrossDomainCallBack&scriptId=ssoscript0&client=ssologin.js(v1.4.15)";
         Map<String, String> cookies = Jsoup.connect(loginURL)
-        		                           .ignoreContentType(true)
-        		                           .method(Method.GET)
-        		                           .execute()
-        		                           .cookies();
+                                           .ignoreContentType(true)
+                                           .method(Method.GET)
+                                           .execute()
+                                           .cookies();
         return cookies;
     }
     
